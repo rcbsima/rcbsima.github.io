@@ -1,0 +1,39 @@
+{{ define "main" }}
+<h1>{{ .Title }}</h1>
+
+<p>{{ .Content }}</p>
+
+{{ range .Paginator.Pages }}
+<div class="relative w-100 w-30-l mb4 bg-white">
+    {{ .Render "title" }}
+    <h3><a class="title" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+</div>
+{{ end }}
+
+{{ template "_internal/pagination.html" . }}
+
+{{/*  {{ range .Pages.ByPublishDate.Reverse }}
+<p>
+    <h3><a class="title" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    
+    <a class="summary" href="{{ .RelPermalink }}">
+        <p>{{ .Summary }}</p>
+    </a>
+</p>
+{{ end }}  */}}
+
+<ul>
+    <!-- Ranges through content/posts/*.md -->
+    {{ range .Pages }}
+        <li>
+            <a href="{{.Permalink}}">{{.Date.Format "2006-01-02"}} | {{.Title}}</a>
+        </li>
+    {{ end }}
+</ul>
+
+<pre>
+{{ printf "%#v" $.Site }}
+</pre>
+
+default list.html
+{{ end }}

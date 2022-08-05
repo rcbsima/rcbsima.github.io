@@ -1,0 +1,69 @@
+{{ define "main" }}
+<h1><span class="font-bold">Title: </span>{{ .Title }}</h1>
+{{/*  {{ .Content | safeHTML }}  */}}
+
+<div class="mt-4">
+  <h2 class="text-xl">Intro tekst</h2>
+  <p>{{ .Params.introText }}</p>
+  <h2 class="text-xl">Flashline</h2>
+  <p>{{ .Params.flashLine }}</p>
+  <h2 class="text-xl">Beskrivelse</h2>
+  <p>{{ .Params.text | safeHTML }}</p>
+</div>
+
+<div class="mt-4">
+  <h2 class="text-xl">Addresse</h2>
+  {{ range $index, $value := .Params.address }}
+    {{/*  <div>{{ . }} is at index {{ $index }}, value: {{ $value.word }}</div>  */}}
+    <div><span class="font-bold">{{ $index }}: </span>{{ . }}</div>
+  {{ end }}
+</div>
+
+<div class="mt-4">
+  <h2 class="text-xl">Mægler</h2>
+  {{ range $index, $value := .Params.broker }}
+    {{/*  <div>{{ . }} is at index {{ $index }}, value: {{ $value.word }}</div>  */}}
+    <div><span class="font-bold">{{ $index }}: </span>{{ . }}</div>
+  {{ end }}
+</div>
+
+<div class="mt-4">
+  <h2 class="text-xl">Keywords</h2>
+  {{ range $index, $value := .Params.tags }}
+    {{/*  <div>{{ . }} is at index {{ $index }}, value: {{ $value.word }}</div>  */}}
+    <div>{{ $value.word }}</div>
+  {{ end }}
+
+  {{/*  <h2>Keywords array</h2>
+  {{ range $index, $value := .Params.keywords }}
+    {{ range $index2, $value2 := $value }}
+      <div>{{ . }} is at index2 {{ $index2 }}, value2: {{ $value2 }}</div>
+    {{ end }}
+  {{ end }}  */}}
+
+  {{/*  {{ with .Params.keywords }}
+  printf: {{ printf "%#v" . }}
+    {{ range . }}
+    printf: {{ printf "%#v" . }}
+    <div class="btn btn-sm btn-outline-dark tag-btn" href="">{{ . }}</a>
+    {{ end }}
+  {{ end }}  */}}
+</div>
+
+{{ with .Params.alternatives }}
+  <div class="mt-4">
+    <h2 class="text-xl">Alternativer</h2>
+  {{ range $index, $value := . }}
+    <h2 class="mt-2 text-lg font-bold">Nummer: {{ $index }}</h2>
+    <ul class="list-disc">
+      {{ range $index, $value := . }}
+        <li><span class="font-bold">{{ $index }}: </span>{{ . }}</li>
+      {{ end }}
+    </ul>
+    
+  {{ end }}
+  </div>
+{{ end }}
+
+demo single.html
+{{ end }}

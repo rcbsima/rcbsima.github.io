@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  {{- partial "head.html" . -}}
+  <body>
+    <div class="bg-gray-100 h-10 flex place-content-end">
+      <div>Opret profil</div>
+      <div>|</div>
+      <div>Log ind</div>
+    </div>
+
+    {{- partial "header.html" . -}}
+    <div id="content">
+    {{- block "main" . }}{{- end }}
+    </div>
+    {{- partial "footer.html" . -}}
+
+    baseof.html
+  </body>
+</html>
