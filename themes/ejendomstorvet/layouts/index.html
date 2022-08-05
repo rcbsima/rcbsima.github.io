@@ -2,8 +2,17 @@
 
   <div>Hepper</div>
   <div>Helløj</div>
+  <div>index.html</div>
 
-  {{ .Content }}
+  {{ range .Paginator.Pages }}
+<div class="relative w-100 w-30-l mb4 bg-white">
+    {{ .Render "title" }}
+    <h3><a class="title" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+</div>
+{{ end }}
+
+{{ template "_internal/pagination.html" . }}
+  {{/*  {{ .Content }}  */}}
 {{/*
   This template is the same as the default and is here to demonstrate that if you have a content directory called "post" you can create a layouts directory, just for that section.
    */}}
